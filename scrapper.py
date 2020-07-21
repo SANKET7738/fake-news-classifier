@@ -3,7 +3,6 @@ import nltk
 import re
 from googlesearch import search
 from urllib.parse import urlparse
-import app
 
 def scrape(user_input):
     url = user_input
