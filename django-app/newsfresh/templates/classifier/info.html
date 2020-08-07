@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <a href="{% url 'classifer:output' %}">
+        <div class="container-fluid">
+            <div class="jumbotron jumbotron-fluid" id="jumbotron">
+                <div class="d-flex justify-content-center">
+                    <img src="../static/img/prod-logo.png" alt="logo">
+                    <h1 class="display-1 ">NewsFresh</h1>
+                </div>
+            </div>
+            <div class="row">
+
+                <!-- Card Group-->
+
+                <div class="col" id="card-group">
+                    <div class="col-md align-middle overflow-hidden">
+                        <!-- Card -->
+                        <div class="card z-depth-1-half" id="article">
+                            <!-- Card content -->
+                            <div class="mask flex-center rgba-white-strong">
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h4 class="card-title font-weight-bold">News title</h4>
+                                    <hr>
+                                    <!-- Text -->
+                                    <p class="card-text">
+                                        {{ pred_output }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Card footer -->
+                            <div class="rounded-bottom mdb-color #0071bc text-center pt-3" id="card-footer">
+                                <ul class="list-unstyled list-inline font-medium">
+                                    <li class="list-inline-item pr-2 white-text"><i class="fas fa-user px-1"></i>Username</li>
+                                    <li class="list-inline-item pr-2 white-text"><i class="far fa-check-circle px-1"></i>76.00%</li>
+                                    <li class="list-inline-item"><a href="#" class="white-text"><i class="fas fa-link px-1"> </i></a></li>
+                                    <li class="list-inline-item pr-2 white-text"><i class="fas fa-thumbs-up px-1"></i></li>
+                                    <li class="list-inline-item pr-2 white-text"><i class="fas fa-thumbs-down px-1"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                </div>
+
+                <!-- Card group-->
+
+                <div class="col-md d-flex justify-content-end" id="vector">
+
+                    <img src="../static/img/man-read.png" alt="vector">
+
+                </div>
+
+            </div>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script type="text/javascript" src="../static/js/script.js">
+    </script>
+</body>
+
+</html>
