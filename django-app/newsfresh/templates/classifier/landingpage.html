@@ -38,7 +38,7 @@
                         {% csrf_token %}
                         <input type="text" id="news_link" class="form-control" placeholder="Post your link" name="news_link">
                         <div class="text-center">
-                            <button type="button" class="btn btn-primary" id="btn-2" value='Save' onclick="submit();">Submit</button>
+                            <button type="button" class="btn btn-primary" id="btn-2" value='Save' onclick="submit();"><a href="{% url 'classifier:output' %}">Submit</a></button>
                         </div>
                     </form>
                 </div>

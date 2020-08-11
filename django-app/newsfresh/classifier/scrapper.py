@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+from classifier.models import NewsInfo
 
 
 
@@ -67,6 +68,8 @@ def simalirity(search_urls, input_text):
         score.append(score*100)
         count += 1
     avg_score = score/count
+
+
     return avg_score
 
 def mentor_similarity(url_list, article):

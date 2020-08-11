@@ -1,3 +1,4 @@
+{% load static %}
 <html>
 
 <head>
@@ -11,16 +12,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{% static 'classifier/css/style.css' %}">
     <title>Dashboard</title>
 </head>
 
 <body>
-    <a href="{% url 'classifer:output' %}">
+    <a href="{% url 'classifier:output' %}">
         <div class="container-fluid">
             <div class="jumbotron jumbotron-fluid" id="jumbotron">
                 <div class="d-flex justify-content-center">
-                    <img src="../static/img/prod-logo.png" alt="logo">
+                    <img src="{% static 'classifier/img/prod-logo.png' %}" alt="logo">
                     <h1 class="display-1 ">NewsFresh</h1>
                 </div>
             </div>
@@ -31,7 +32,7 @@
                 <div class="col" id="card-group">
                     <div class="col-md align-middle overflow-hidden">
                         <!-- Card -->
-                        <div class="card z-depth-1-half" id="article">
+                        <div class="card z-depth-1-half w-75" id="article">
                             <!-- Card content -->
                             <div class="mask flex-center rgba-white-strong">
                                 <div class="card-body">
@@ -64,47 +65,50 @@
 
                 <div class="col-md d-flex justify-content-end" id="vector">
 
-                    <img src="../static/img/man-read.png" alt="vector">
+                    <img src="{% static 'classifier/img/man-read.png' %}" alt="vector">
 
                 </div>
 
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        <script type="text/javascript" src="{% static 'classifier/js/script.js' %}"></script>
     </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-    <script type="text/javascript" src="../static/js/script.js">
-    </script>
 </body>
+
 
 </html>

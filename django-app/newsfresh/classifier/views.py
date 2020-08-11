@@ -21,22 +21,32 @@ with open('models/data_pick.pkl','rb') as pickle_data:
     corpus = pickle.load(pickle_data)
 
 from classifier.scrapper import scrape, simalirity, google_search
+from classifier.models import NewsInfo
 
 
 # Create your views here.
 def index(request):
+    output = ''
+    
     if request.GET.get('news_link', None) is not None:
         try:
             url = request.GET['news_link']
+            NewsInfo.objects.create(news_link=url)
             pred_output = classify(url)
-            print(pred_output)
+            if(pred_output==1):
+                output = "Unreliable"
+            else:
+                output = "Reliable"
+            print(output)
+            NewsInfo.objects.create(output=output)
+            NewsInfo.save()
         except Exception as e:
             print(e)
    
     return render(request, 'classifier/landingpage.html')
 
 def output(request):
-    return render(request,'classifier/info.html')
+    return render(request,'classifier/info.html', {'pred_output':output})
 
 def predict(input):
      # preprocessing
