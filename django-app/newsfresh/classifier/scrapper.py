@@ -112,6 +112,31 @@ def mentor_similarity(url_list, article):
     return cosineCleaned, averageScore
 
 
+def predict(input):
+     # preprocessing
+    ps = PorterStemmer()
+    test_text = []
+    input_txt = input
+    test = re.sub('[^a-zA-Z]',' ',input_txt[0])
+    test = test.lower()
+    test = test.split()
+    test = [ps.stem(word) for word in test if not word in stopwords.words('english')]
+    test = ' '.join(test)
+    test_text.append(test)
+
+    #countvectorization
+
+    corpus.append(test_text[0])
+
+   # from sklearn.feature_extraction.text import CountVectorizer
+    #cv = CountVectorizer(max_features=5000,ngram_range=(1,3))
+    X = cv.fit_transform(corpus).toarray()
+
+    prediction = model.predict(np.array([X[-1]]))
+
+    return prediction
+
+
 if __name__ == "__main__":
     url = 'https://www.indiatoday.in/india/story/indian-national-among-killed-landslides-nepal-1707450-2020-08-03'
     test_text, test_title, test_link, test_article = scrape(url)
