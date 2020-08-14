@@ -7,5 +7,6 @@ class NewsInfo(models.Model):
     news_title = models.TextField(default=" ")
     news_text = models.TextField(default=" ")
     output = models.TextField(default=" ")
-    
+    objects = models.Manager()
+
     

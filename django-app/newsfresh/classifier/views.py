@@ -10,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import pickle
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -36,7 +36,14 @@ def index(request):
    
     return render(request, 'classifier/landingpage.html')
 
-def output(request):
+def output(request, output):
+    try:
+        output = NewsInfo.objects.get(pk=output)
+    except NewsInfo.DoesNotExist:
+        raise Http404("Question does not exist")
+
+    #output = classify(news_link)
+
     return render(request,'classifier/info.html', {'pred_output':output})
 
 

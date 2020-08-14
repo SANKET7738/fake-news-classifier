@@ -2,13 +2,21 @@ from newspaper import Article
 import nltk
 import re
 import numpy as np
-import torch
-import torch.nn as nn
+import pickle
 from googlesearch import search
 from urllib.parse import urlparse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+#nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(max_features=5000,ngram_range=(1,3))
+model = pickle.load(open('models/model.pkl', 'rb'))
+
+with open('models/data_pick.pkl','rb') as pickle_data:
+    corpus = pickle.load(pickle_data)
 from classifier.models import NewsInfo
 
 

@@ -20,13 +20,6 @@ h2 {
     letter-spacing: 1px;
 }
 
-h3 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    color: white;
-}
-
 P {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -46,7 +39,7 @@ P {
     margin-right: 8%;
 }
 
-#btn {
+#btn-1 {
     padding: 10px 40px;
     border-radius: 2em;
     font-size: 1.5rem;
@@ -57,7 +50,22 @@ P {
     background-color: #0071bc;
 }
 
-#btn:hover {
+#btn-1:hover {
+    background-color: #2e3192;
+}
+
+#btn-2 {
+    padding: 10px 40px;
+    border-radius: 2em;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    margin-right: 5%;
+    margin-top: 5%;
+    background-color: #0071bc;
+}
+
+#btn-2:hover {
     background-color: #2e3192;
 }
 
@@ -81,23 +89,12 @@ P {
     background-size: cover;
 }
 
-#card-footer {
-    background-color: #0071bc;
-}
+.card-footer {}
 
 #profile {
     background-color: #0071bc;
-    width: 100%;
 }
 
 #profile-body {
     background-color: white;
-}
-
-#avtar {}
-
-#profile-pic {
-    height: 120px;
-    width: 120px;
-    margin-top: 10px;
 }
