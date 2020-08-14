@@ -2,8 +2,6 @@ from newspaper import Article
 import nltk
 import re
 import numpy as np
-import torch
-import torch.nn as nn
 from googlesearch import search
 from urllib.parse import urlparse
 from sklearn.feature_extraction.text import CountVectorizer
