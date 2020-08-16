@@ -2,11 +2,21 @@ from newspaper import Article
 import nltk
 import re
 import numpy as np
+import pickle
 from googlesearch import search
 from urllib.parse import urlparse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+#nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(max_features=5000,ngram_range=(1,3))
+model = pickle.load(open('models/model.pkl', 'rb'))
+
+with open('models/data_pick.pkl','rb') as pickle_data:
+    corpus = pickle.load(pickle_data)
 from classifier.models import NewsInfo
 
 
@@ -108,6 +118,31 @@ def mentor_similarity(url_list, article):
     averageScore = float(averageScore)
     print(averageScore)
     return cosineCleaned, averageScore
+
+
+def predict(input):
+     # preprocessing
+    ps = PorterStemmer()
+    test_text = []
+    input_txt = input
+    test = re.sub('[^a-zA-Z]',' ',input_txt[0])
+    test = test.lower()
+    test = test.split()
+    test = [ps.stem(word) for word in test if not word in stopwords.words('english')]
+    test = ' '.join(test)
+    test_text.append(test)
+
+    #countvectorization
+
+    corpus.append(test_text[0])
+
+   # from sklearn.feature_extraction.text import CountVectorizer
+    #cv = CountVectorizer(max_features=5000,ngram_range=(1,3))
+    X = cv.fit_transform(corpus).toarray()
+
+    prediction = model.predict(np.array([X[-1]]))
+
+    return prediction
 
 
 if __name__ == "__main__":
