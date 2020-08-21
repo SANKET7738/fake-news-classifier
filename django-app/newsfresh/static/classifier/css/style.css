@@ -94,7 +94,9 @@ P {
     background-color: white;
 }
 
-#avtar {}
+#avtar {
+    width: 100%;
+}
 
 #profile-pic {
     height: 120px;

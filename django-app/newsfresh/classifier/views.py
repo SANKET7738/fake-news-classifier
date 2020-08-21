@@ -26,24 +26,38 @@ from classifier.models import NewsInfo
 
 # Create your views here.
 def index(request):
+    print(request.POST)
+    print("im in ")
+    print(request.GET)
     if request.GET.get('news_link', None) is not None:
         try:
             url = request.GET['news_link']
             NewsInfo.objects.create(user_input=url)
             print("step-1")
-            '''
+
             output = classify(url)
             print(output)
             '''
+            if 'load_output' in request.GET:
+                return render(request, 'classifier/info.html', {'pred_output':output})
+            '''
+            
         except Exception as e:
             print(e)
    
     return render(request, 'classifier/landingpage.html')
     
 
-def output(request, user_input):
+def output(request):
     print("step-2")
+
+    try:
+        output = NewsInfo.objects.get(output)
+        print(output)
     
+    except Exception as e:
+        print(e)
+    '''
     try:
         input = NewsInfo.objects.get(pk=user_input)
         output = classify(input)
@@ -52,10 +66,7 @@ def output(request, user_input):
 
     except NewsInfo.DoesNotExist:
         raise Http404("Question does not exist")
-
-  
-
-
+    '''
     return render(request,'classifier/info.html', {'pred_output':output})
 
     

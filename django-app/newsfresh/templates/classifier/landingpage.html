@@ -34,12 +34,12 @@
                     </div>
                 </div>
                 <div class="md-form input-with-post-icon z-depth-1-half" id="form">
-                    <form action="" method=[ 'POST', 'GET']>
-                        {% csrf_token %}
+                    <form action="" method="GET">
+
                         <input type="text" id="news_link" class="form-control" placeholder="Post your link" name="news_link">
                         <div class="text-center">
-                         <button type="button" class="btn btn-primary" id="btn-2" value='Save' onclick="submit();"><a href="{% url 'classifier:output' %}">Submit</a></button> 
-                
+                            <button type="button" name="load_output" class="btn btn-primary" id="btn-2" value='Save'>Submit</button>
+
                         </div>
                     </form>
                 </div>
