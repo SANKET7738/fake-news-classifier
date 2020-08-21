@@ -5,5 +5,8 @@ app_name = 'classifier'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('output/',views.output, name='output'),
+    path('form/',views.form, name='form'),
+    path('output/',views.output, name='output')
+    
+
 ]

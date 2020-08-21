@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block col-1 %}
+<div class="col-md align-middle overflow-hidden" id="intro">
+    <div class="md-form input-with-post-icon z-depth-1-half" id="form">
+        <form method="POST">
+            {% csrf_token %}
+            {% for non_field_error in form.non_field_error %}
+                <p class="help is-danger">{{ non_field_error}}</p>
+            {% endfor %}
+            {{ form }}
+            {% for error in form.erros %}
+                <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
+            <div class="text-center">
+                <button type="button" name="load_output" class="btn btn-primary" id="btn" value='Save'><a href="{% url 'classifier:output' %}">Submit</a></button>
+
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block col-2 %}
+
+<div class="col-md d-flex justify-content-end" id="vector">
+    <img src="{% static 'classifier/img/man-read.png' %}" alt="vector">
+
+</div>
+
+{% endblock %}

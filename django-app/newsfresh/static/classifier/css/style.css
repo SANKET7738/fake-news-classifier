@@ -63,7 +63,7 @@ P {
 
 #info {
     visibility: visible;
-    z-index: -1;
+
 }
 
 #form {
@@ -71,9 +71,8 @@ P {
     height: 100%;
     border: 2px solid #0071bc;
     border-radius: 20px;
-    overflow: hidden;
-    visibility: hidden;
-    bottom: -100vh;
+    visibility: visible;
+
 }
 
 #article {
@@ -94,7 +93,9 @@ P {
     background-color: white;
 }
 
-#avtar {}
+#avtar {
+    width: 100%;
+}
 
 #profile-pic {
     height: 120px;

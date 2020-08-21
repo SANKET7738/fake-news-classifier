@@ -4,6 +4,7 @@ from .forms import InputForm
 from newspaper import Article
 import nltk
 import re
+import requests
 from googlesearch import search
 from urllib.parse import urlparse
 from sklearn.metrics.pairwise import cosine_similarity
@@ -22,41 +23,38 @@ with open('models/data_pick.pkl','rb') as pickle_data:
 
 from classifier.scrapper import scrape, simalirity, google_search, predict
 from classifier.models import NewsInfo
+from classifier.forms import InputForm
 
 
 # Create your views here.
 def index(request):
-    if request.GET.get('news_link', None) is not None:
-        try:
-            url = request.GET['news_link']
-            NewsInfo.objects.create(user_input=url)
-            print("step-1")
-            '''
-            output = classify(url)
-            print(output)
-            '''
-        except Exception as e:
-            print(e)
+    print(request.POST)
+    
    
     return render(request, 'classifier/landingpage.html')
+
+def form(request):
+    form = InputForm()
+
+
+    return render(request, 'classifier/form.html', {'form':form})
+
+def output(request):
+    print("1")
+    form = InputForm(request.POST)
+    if form.is_valid():
+        print("2")
+        url = form.cleaned_data['input_url']
+        print(url)
+        return render(request, 'classifier/output.html', {'url':url})
+    else:
+        print("error")
+        error = "Oops"
+
+    return render(request, 'classifier/output.html',{'url':error})
     
 
-def output(request, user_input):
-    print("step-2")
-    
-    try:
-        input = NewsInfo.objects.get(pk=user_input)
-        output = classify(input)
-        print(output)
-        print("step-4")
 
-    except NewsInfo.DoesNotExist:
-        raise Http404("Question does not exist")
-
-  
-
-
-    return render(request,'classifier/info.html', {'pred_output':output})
 
     
 
