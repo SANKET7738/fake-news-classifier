@@ -43,7 +43,17 @@ P {
 }
 
 #vector {
-    margin-right: 8%;
+    margin-bottom: 0;
+}
+
+#png {
+    height: 610px;
+    width: 790px;
+}
+
+#png-2 {
+    height: 550px;
+    width: 880px;
 }
 
 #btn {
@@ -54,26 +64,23 @@ P {
     letter-spacing: 1.2px;
     margin-right: 5%;
     margin-top: 5%;
-    background-color: #0071bc;
+    background-color: #6c63ff;
+    color: white;
 }
 
 #btn:hover {
-    background-color: #2e3192;
+    background-color: #514caa;
 }
 
 #info {
     visibility: visible;
-    z-index: -1;
 }
 
 #form {
     padding: 40px;
-    height: 100%;
-    border: 2px solid #0071bc;
+    border: 2px solid #6c63ff;
     border-radius: 20px;
-    overflow: hidden;
-    visibility: hidden;
-    bottom: -100vh;
+    visibility: visible;
 }
 
 #article {
@@ -82,11 +89,11 @@ P {
 }
 
 #card-footer {
-    background-color: #0071bc;
+    background-image: linear-gradient(#6c63ff, #363284);
 }
 
 #profile {
-    background-color: #0071bc;
+    background-image: linear-gradient(#6c63ff, #363284);
     width: 100%;
 }
 

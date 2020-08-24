@@ -4,6 +4,7 @@ from .forms import InputForm
 from newspaper import Article
 import nltk
 import re
+import requests
 from googlesearch import search
 from urllib.parse import urlparse
 from sklearn.metrics.pairwise import cosine_similarity
@@ -20,56 +21,53 @@ model = pickle.load(open('models/model.pkl', 'rb'))
 with open('models/data_pick.pkl','rb') as pickle_data:
     corpus = pickle.load(pickle_data)
 
-from classifier.scrapper import scrape, simalirity, google_search, predict
+from classifier.scrapper import scrape, similarity, google_search, predict
 from classifier.models import NewsInfo
+from django.db.models import Exists
+from classifier.forms import InputForm
 
 
 # Create your views here.
 def index(request):
-    print(request.POST)
-    print("im in ")
-    print(request.GET)
-    if request.GET.get('news_link', None) is not None:
-        try:
-            url = request.GET['news_link']
-            NewsInfo.objects.create(user_input=url)
-            print("step-1")
-
-            output = classify(url)
-            print(output)
-            '''
-            if 'load_output' in request.GET:
-                return render(request, 'classifier/info.html', {'pred_output':output})
-            '''
-            
-        except Exception as e:
-            print(e)
-   
     return render(request, 'classifier/landingpage.html')
-    
+
+def form(request):
+    form = InputForm()
+    return render(request, 'classifier/form.html', {'form':form})
 
 def output(request):
-    print("step-2")
+    if request.method == "POST":
+        form = InputForm(request.POST)
+        if form.is_valid():
+            url = form.cleaned_data['input_url']
+            if not NewsInfo.objects.filter(user_input=url).exists():
+                article = Article(url)
+                article.download()
+                article.parse()
+                news_img = article.top_image
+                article = article.text 
+                output, news_title, score= classify(url)
+            else:
+                print("news already exists")
+                values = NewsInfo.objects.fiter(user_input=url)
+                print(values)
+                error = "Oops"
+                return render(request, 'classifier/output.html',{'news_article':error})
+            username = request.user.username
+            if len(username) == 0:
+                username = "Anonymous"
+            args = {'output': output, 'news_title': news_title, 'news_article': article, 'score':score, 'news_img':news_img, 'username':username}
+            return render(request, 'classifier/output.html', args)
+        else:
+            print(form.errors())
 
-    try:
-        output = NewsInfo.objects.get(output)
-        print(output)
+    else:
+        print("error")
+        error = "Oops"
+
+    return render(request, 'classifier/output.html',{'url':error})
     
-    except Exception as e:
-        print(e)
-    '''
-    try:
-        input = NewsInfo.objects.get(pk=user_input)
-        output = classify(input)
-        print(output)
-        print("step-4")
 
-    except NewsInfo.DoesNotExist:
-        raise Http404("Question does not exist")
-    '''
-    return render(request,'classifier/info.html', {'pred_output':output})
-
-    
 
 
 def classify(url):
@@ -80,7 +78,7 @@ def classify(url):
     news_model.news_link = test_link
     news_model.news_text = test_text
     search_urls, source_sites = google_search(test_link, test_title)
-    #sim_score = simalirity(search_urls, test_text)
+    sim_score = similarity(search_urls, test_text)
     pred_output = predict(test_text)
     if(pred_output==1):
         output = "Unreliable"
@@ -90,7 +88,7 @@ def classify(url):
     news_model.output = output
     news_model.save()
 
-    return output
+    return output, test_title, sim_score
 
 
 

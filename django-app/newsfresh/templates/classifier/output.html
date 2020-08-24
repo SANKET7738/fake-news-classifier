@@ -1,0 +1,58 @@
+{% extends 'base.html'%} {% load static %} {% block col-1 %}
+<div class="col-md d-flex justify-content-center">
+    <div class="card z-depth-1-half w-75 animated bounceInDown" style="background-image: url({{ news_img }})" id="article">
+        <!-- Card content -->
+        <div class="mask flex-center rgba-white-strong">
+            <div class="card-body">
+                <!-- Title -->
+                <h4 class="card-title font-weight-bold">{{ news_title }}</h4>
+                <hr>
+                <!-- Text -->
+                <p class="card-text">
+                    {{ news_article|truncatechars:420 }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Card footer -->
+        <div class="rounded-bottom  text-center pt-3" id="card-footer">
+            <ul class="list-unstyled list-inline font-medium">
+                <li class="h6 list-inline-item pr-2 white-text font-weight-bold">{{ output }}</li>
+                <li class="h6 list-inline-item pr-2 white-text font-weight-bold"><i class="far fa-check-circle px-1"></i>{{ score }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block col-2 %}
+<div class="col-md d-flex justify-content-center h-50 ">
+
+    <div class="card testimonial-card w-50 z-depth-1-half class animated bounceInUp" id="profile">
+
+        <!-- Background color -->
+        <!---  <div class="card-up " id="profile"></div> -->
+
+        <!-- Avatar -->
+        <div class="avatar mx-auto d-flex justify-content-center" id="avtar">
+            <img src="{% static 'classifier/img/default.png' %}" class="rounded-circle" alt="avatar" id="profile-pic">
+        </div>
+
+        <!-- Content -->
+        <div class="card-body">
+            <h3 class="card-title d-flex justify-content-center">{{ username }}</h3>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <a type="button" class="btn-floating btn-medium  p-1 mx-3 z-depth-1  rounded-circle white"><i class="fas fa-grin-beam fa-2x green-text"></i></a>
+
+                <a type="button" class="btn-floating btn-medium  p-1 mx-3 z-depth-1 rounded-circle white"><i class="fas fa-angry fa-2x red-text"></i></a>
+
+                <a type="button" href="{% url 'classifier:form' %}" class="btn-floating btn-medium  p-1 mx-3 z-depth-1 rounded-circle white"><i class="fas fa-plus-circle fa-2x blue-text"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

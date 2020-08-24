@@ -1,0 +1,23 @@
+{% extends 'base.html'%} {% load static %} {% block col-1 %}
+<div class="col-md align-middle overflow-hidden" id="intro">
+    <div class="md-form input-with-post-icon z-depth-1-half w-75 h-50 animated slideInLeft faster" id="form">
+        <form action="{% url 'classifier:output' %}" method="POST">
+            {% csrf_token %} {% for non_field_error in form.non_field_error %}
+            <p class="help is-danger">{{ non_field_error}}</p>
+            {% endfor %} {{ form }} {% for error in form.erros %}
+            <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="btn z-depth-1-half" id="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block col-2 %}
+
+<div class="col-md d-flex justify-content-center" id="vector">
+    <img src="{% static 'classifier/img/form.png' %}" class="animated slideInRight faster" id="png-2" alt="vector">
+
+</div>
+
+{% endblock %}

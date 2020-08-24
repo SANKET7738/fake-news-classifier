@@ -17,7 +17,7 @@ model = pickle.load(open('models/model.pkl', 'rb'))
 
 with open('models/data_pick.pkl','rb') as pickle_data:
     corpus = pickle.load(pickle_data)
-from classifier.models import NewsInfo
+
 
 
 
@@ -52,35 +52,8 @@ def google_search(input_link, input_title):
 
     return search_urls, source_sites
 
-def simalirity(search_urls, input_text):
-    #cv = CountVectorizer(max_features = 5000, ngram_range=(1,3))
-    count = 0
-    input_text = input_text
-    # print('INPUT_TEXT = ', input_text)
-    sim_tfv = TfidfVectorizer(stop_words ="english")
-    #obj1 =  cv.fit_transform(input_text)
-    obj1 = sim_tfv.fit_transform(input_text)
-    
-    
-    for i in search_urls:
-        print('count = ', count)
-        test_text, test_title, test_link, test_article = scrape(i)
-        # print('TEST_TEXT = ', test_text)
-        # print('length ', len(test_text[0]))
-        test_text = [test_text]
-        #obj2 = cv.fit_transform(test_text)
-        sim_tfv2 = TfidfVectorizer(stop_words ="english")
-        
-        obj2 = sim_tfv2.fit_transform(test_text[0])
-        score = cosine_similarity(obj1,obj2)
-        score.append(score*100)
-        count += 1
-    avg_score = score/count
 
-
-    return avg_score
-
-def mentor_similarity(url_list, article):
+def similarity(url_list, article):
     article = article
     sim_tfv = TfidfVectorizer(stop_words ="english")
     #article needs to be vectorized first
@@ -117,7 +90,8 @@ def mentor_similarity(url_list, article):
     averageScore = str(averageScore).replace('[','').replace(']','')
     averageScore = float(averageScore)
     print(averageScore)
-    return cosineCleaned, averageScore
+    averageScore = round(averageScore, 2)
+    return averageScore
 
 
 def predict(input):
@@ -148,13 +122,14 @@ def predict(input):
 if __name__ == "__main__":
     url = 'https://www.indiatoday.in/india/story/indian-national-among-killed-landslides-nepal-1707450-2020-08-03'
     test_text, test_title, test_link, test_article = scrape(url)
+    print(test_article)
     #print(test_text, test_link,test_title, test_article)
     search_urls, source_sites = google_search(test_link, test_title)
     #print(search_urls)
     #print(source_sites)
-    sim_score = simalirity(search_urls, test_text)
-    # sim_score = mentor_similarity(search_urls, test_text)
-    print(sim_score)
+    #sim_score = simalirity(search_urls, test_text)
+    #sim_score, avg_score = similarity(search_urls, test_text)
+    #print(avg_score)
      
 
 
