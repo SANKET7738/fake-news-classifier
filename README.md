@@ -1,7 +1,9 @@
 # NewsFresh
-Detecting Fake News and Misinformation
+Detecting Fake News and Misinformation!
 
-<strong>Setup</strong>
+An end-to-end Machine Learning based web-app built on top of Django and Flask to detect and classify fake news.
+
+## Setup
  
 This project requires **Python3** or above version. So first check your python version.
 You can use ``` python --version ``` to check the version you are running.
@@ -66,3 +68,20 @@ You can acess the django shell by ```python manage.py shell```.
 
 for FLask setup [click here](https://github.com/SANKET7738/NewsFresh/blob/master/flask-app/setup.md)
  
+
+## Usage
+
+1. Dashboard
+
+![landing-page](https://github.com/SANKET7738/fake-news-classifier/blob/master/demo-imgs/dashboard.png)
+
+
+2. Provide the *URL* of the news as an input.
+
+![input](https://github.com/SANKET7738/fake-news-classifier/blob/master/demo-imgs/input.png)
+
+3. Wait for the results!
+
+![output](https://github.com/SANKET7738/fake-news-classifier/blob/master/demo-imgs/output.png)
+
+
