@@ -9,7 +9,7 @@ An end-to-end machine learning based web-app to detect and classify fake news.
 2. Download the pkl files from the google drive link provided below and store it in the folder of your app.  
 3. Download the dependencies and the required files.  
 4. Use 'python app.py' to launch the app.  
-5. The app only takes text as an input , providing a link will not work. 
+5. The app only takes *text* as an input , providing a link will not work. 
 6. The results may take few mins to appear. 
 
 
