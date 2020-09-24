@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-#nltk.download('stopwords')
+#nltk.download('stopwords')     "needs to be executed for the first time, can be commented out later"
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -20,7 +20,7 @@ with open('models/data_pick.pkl','rb') as pickle_data:
 
 
 
-
+# to scrape the article 
 def scrape(user_input):
     url = user_input
     article = Article(url)
@@ -40,6 +40,7 @@ def scrape(user_input):
 
     return input_text, input_title, input_link, article
 
+# to google related articles
 def google_search(input_link, input_title):
     title = input_title
     domain = urlparse(input_link).hostname
@@ -53,6 +54,7 @@ def google_search(input_link, input_title):
     return search_urls, source_sites
 
 
+# to give a simalrity score
 def similarity(url_list, article):
     article = article
     sim_tfv = TfidfVectorizer(stop_words ="english")
@@ -94,6 +96,7 @@ def similarity(url_list, article):
     return averageScore
 
 
+# to predict the output 
 def predict(input):
      # preprocessing
     ps = PorterStemmer()
@@ -106,12 +109,8 @@ def predict(input):
     test = ' '.join(test)
     test_text.append(test)
 
-    #countvectorization
-
     corpus.append(test_text[0])
 
-   # from sklearn.feature_extraction.text import CountVectorizer
-    #cv = CountVectorizer(max_features=5000,ngram_range=(1,3))
     X = cv.fit_transform(corpus).toarray()
 
     prediction = model.predict(np.array([X[-1]]))
@@ -120,6 +119,8 @@ def predict(input):
 
 
 if __name__ == "__main__":
+    # if you want to run only this particular script to check the individual functions.
+
     url = 'https://www.indiatoday.in/india/story/indian-national-among-killed-landslides-nepal-1707450-2020-08-03'
     test_text, test_title, test_link, test_article = scrape(url)
     print(test_article)
