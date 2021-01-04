@@ -1,7 +1,7 @@
 from django.db import models
 
-# Create your models here.
 
+# Create your models here.
 class NewsInfo(models.Model):
     user_input = models.TextField(default=" ")
     news_link = models.TextField(default=" ")
@@ -9,5 +9,3 @@ class NewsInfo(models.Model):
     news_text = models.TextField(default=" ")
     output = models.TextField(default=" ")
     objects = models.Manager()
-
-    
