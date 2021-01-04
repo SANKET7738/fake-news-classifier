@@ -15,7 +15,7 @@ After checking this you can clone the repo.
 Make sure git is installed. You can proced then by the link-
 
 ```
-git clone https://github.com/HarshCasper/NewsFresh
+git clone https://github.com/SANKET7738/fake-news-classifier.git
 ```
 
 After cloning the repo open a terminal window to the desired location. Then, install virtualenv using ``` pip install virtualenv ``` .
