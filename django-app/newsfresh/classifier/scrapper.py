@@ -42,7 +42,7 @@ def google_search(input_link, input_title):
     domain = urlparse(input_link).hostname
     search_urls = []
     source_sites = []
-    for i in search(title, tld="com", num=10, start=1, stop=6):
+    for i in search(title, tld="com", num=10, start=1, stop=10):
         if "youtube" not in i and domain not in i:
             source_sites.append(urlparse(i).hostname)
             search_urls.append(i)

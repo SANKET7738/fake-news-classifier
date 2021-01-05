@@ -22,7 +22,11 @@ def output(request):
             url = form.cleaned_data['input_url']
             if not NewsInfo.objects.filter(user_input=url).exists():
                 article = Article(url)
-                article.download()
+                try:
+                    article.download()
+                except Exception as e:
+                    print(e)
+                    return render(request, 'classifier/error.html')
                 article.parse()
                 news_img = article.top_image
                 article = article.text
