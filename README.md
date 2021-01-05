@@ -66,7 +66,7 @@ Linux users use ```python3``` instead of ```python```.
 You can acess the django shell by ```python manage.py shell```.
 
 
-for FLask setup [click here](https://github.com/SANKET7738/NewsFresh/blob/master/flask-app/setup.md)
+for FLask setup [click here](https://github.com/SANKET7738/fake-news-classifier/blob/master/flask-app/README.md)
  
 
 ## Usage
