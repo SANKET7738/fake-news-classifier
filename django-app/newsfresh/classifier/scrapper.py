@@ -57,7 +57,6 @@ def similarity(url_list, article):
     # article needs to be vectorized first
     sim_transform1 = sim_tfv.fit_transform(article)
     cosine = []
-    cosineCleaned = []
     cosineAverage = 0
     count = 0
     print('sim_transform1 = ', sim_transform1)
@@ -72,9 +71,6 @@ def similarity(url_list, article):
         cosine.append(score*100)
         print("Article " + str(count) + " similarity calculated")
         count += 1
-    for i in cosine:
-        x = str(i).replace('[', '').replace(']', '')
-        cosineCleaned.append(x)
     for i in cosine:
         if i != 0:
             cosineAverage = cosineAverage + i
